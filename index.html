@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Student Result Management System</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>Student Result Management</h1>
+      <p class="subtitle">Add, view, update, and manage student records</p>
+    </header>
+
+    <!-- Add Student Form -->
+    <section class="form-section">
+      <h2>Add New Student</h2>
+      <form id="studentForm">
+        <div class="form-group">
+          <label for="studentName">Student Name</label>
+          <input 
+            type="text" 
+            id="studentName" 
+            placeholder="Enter student name" 
+            autocomplete="off"
+          >
+          <span class="error-msg" id="nameError"></span>
+        </div>
+        <div class="form-group">
+          <label for="studentMarks">Marks (0-100)</label>
+          <input 
+            type="number" 
+            id="studentMarks" 
+            placeholder="Enter marks" 
+            min="0" 
+            max="100"
+          >
+          <span class="error-msg" id="marksError"></span>
+        </div>
+        <button type="submit" class="btn btn-primary" id="submitBtn">
+          <span class="btn-text">Add Student</span>
+          <span class="loader hidden" id="submitLoader"></span>
+        </button>
+      </form>
+    </section>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="toast hidden"></div>
+
+    <!-- Students List Section -->
+    <section class="students-section">
+      <div class="section-header">
+        <h2>Student Records</h2>
+        <button class="btn btn-secondary" id="refreshBtn" title="Refresh list">
+          ↻ Refresh
+        </button>
+      </div>
+      
+      <div class="table-wrapper">
+        <div class="loading-overlay hidden" id="loadingOverlay">
+          <div class="spinner"></div>
+          <p>Loading students...</p>
+        </div>
+        
+        <table class="students-table">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Name</th>
+              <th>Marks</th>
+              <th>Grade</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody id="studentsTableBody">
+            <!-- Rows populated by JavaScript -->
+          </tbody>
+        </table>
+        <p class="empty-state hidden" id="emptyState">No students added yet. Add your first student above!</p>
+      </div>
+    </section>
+  </div>
+
+  <!-- Edit Modal -->
+  <div id="editModal" class="modal hidden">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2>Edit Student</h2>
+        <button class="modal-close" id="closeModal">&times;</button>
+      </div>
+      <form id="editForm">
+        <input type="hidden" id="editStudentId">
+        <div class="form-group">
+          <label for="editName">Student Name</label>
+          <input type="text" id="editName" required>
+          <span class="error-msg" id="editNameError"></span>
+        </div>
+        <div class="form-group">
+          <label for="editMarks">Marks (0-100)</label>
+          <input type="number" id="editMarks" min="0" max="100" required>
+          <span class="error-msg" id="editMarksError"></span>
+        </div>
+        <button type="submit" class="btn btn-primary">
+          <span class="btn-text">Save Changes</span>
+          <span class="loader hidden" id="editLoader"></span>
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
