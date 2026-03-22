@@ -94,7 +94,3 @@ Open **http://localhost:5000** in your browser. The frontend is served from the 
 - **Marks ≥ 90** → Grade A
 - **Marks ≥ 75** → Grade B
 - **Else** → Grade C
-
-## License
-
-ISC
